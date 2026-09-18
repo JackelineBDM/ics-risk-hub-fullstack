@@ -8,6 +8,7 @@ urlpatterns = [
     path("facilities/", include("facilities.urls")),
     path("assessments/", include("assessments.urls")),
     path("threats/", include("threats.urls")),
+    path("compliance/", include("compliance.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]
