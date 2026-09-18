@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h1 class="h3 mb-3">{% if object %}Edit facility{% else %}Add facility{% endif %}</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-warning" type="submit">Save</button>
+                <a class="btn btn-outline-warning" href="{% url 'facility-list' %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
