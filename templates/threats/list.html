@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Threat matrix</h1>
+<p>Threats mapped to Purdue levels. Filter by impact.</p>
+<p>
+    <a class="btn btn-sm btn-outline-warning" href="{% url 'threat-list' %}">All</a>
+    <a class="btn btn-sm btn-outline-warning" href="?impact=medium">Medium</a>
+    <a class="btn btn-sm btn-outline-warning" href="?impact=high">High</a>
+    <a class="btn btn-sm btn-outline-warning" href="?impact=critical">Critical</a>
+</p>
+<div class="row">
+    {% for threat in threats %}
+    <div class="col-md-6 mb-3">
+        <div class="card p-3">
+            <h2 class="h5">{{ threat.name }}</h2>
+            <p>Purdue: {{ threat.purdue_level }}</p>
+            <p>Impact: {{ threat.get_impact_display }}</p>
+            <p>{{ threat.description }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p>No threats found. Add them in admin.</p>
+    {% endfor %}
+</div>
+{% endblock %}
