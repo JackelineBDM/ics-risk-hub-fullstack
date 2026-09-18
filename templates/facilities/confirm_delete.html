@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h1 class="h3">Delete facility</h1>
+            <p>Delete {{ object.name }}? This cannot be undone.</p>
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">Yes, delete</button>
+                <a class="btn btn-outline-warning" href="{% url 'facility-list' %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

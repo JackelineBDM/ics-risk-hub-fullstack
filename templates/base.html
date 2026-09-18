@@ -17,6 +17,10 @@
     <nav class="navbar navbar-dark border-bottom border-warning mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{% url 'home' %}">ICS Risk Hub</a>
+            {% if user.is_authenticated %}
+                <a class="btn btn-sm btn-outline-warning ms-3" href="{% url 'facility-list' %}">My Facilities</a>
+            {% endif %}
+
             <div>
                 {% if user.is_authenticated %}
                     <span class="me-3">Hello, {{ user.username }}</span>

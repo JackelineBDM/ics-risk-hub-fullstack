@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>My Facilities</h1>
+    <a class="btn btn-warning" href="{% url 'facility-add' %}">Add facility</a>
+</div>
+{% if facilities %}
+<div class="row">
+    {% for facility in facilities %}
+    <div class="col-md-6 mb-3">
+        <div class="card p-3">
+            <h2 class="h5">{{ facility.name }}</h2>
+            <p class="mb-1">Sector: {{ facility.get_sector_display }}</p>
+            <p>{{ facility.description|default:"No description" }}</p>
+            <a class="btn btn-sm btn-outline-warning" href="{% url 'facility-edit' facility.pk %}">Edit</a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'facility-delete' facility.pk %}">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>You have no facilities yet.</p>
+<a class="btn btn-warning" href="{% url 'facility-add' %}">Add your first facility</a>
+{% endif %}
+{% endblock %}
