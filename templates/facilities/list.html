@@ -14,6 +14,7 @@
             <p>{{ facility.description|default:"No description" }}</p>
             <a class="btn btn-sm btn-outline-warning" href="{% url 'facility-edit' facility.pk %}">Edit</a>
             <a class="btn btn-sm btn-warning" href="{% url 'assessment-form' facility.pk %}">Assess</a>
+            <a class="btn btn-sm btn-outline-warning" href="{% url 'compliance-checklist' facility.pk %}">Checklist</a>
             <a class="btn btn-sm btn-outline-danger" href="{% url 'facility-delete' facility.pk %}">Delete</a>
         </div>
     </div>

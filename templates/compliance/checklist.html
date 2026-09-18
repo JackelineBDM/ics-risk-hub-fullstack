@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>SL2 checklist</h1>
+<p>Facility: {{ facility.name }}</p>
+<p>{{ done }} of {{ total }} controls implemented ({{ percent }}%)</p>
+<form method="post">
+    {% csrf_token %}
+    {% for row in rows %}
+    <div class="card p-3 mb-2">
+        <label>
+            <input type="checkbox" name="control" value="{{ row.control.id }}"
+                {% if row.is_implemented %}checked{% endif %}>
+            {{ row.control.order }}. {{ row.control.title }}
+        </label>
+    </div>
+    {% empty %}
+    <p>No controls found. Add them in admin.</p>
+    {% endfor %}
+    <button class="btn btn-warning" type="submit">Save checklist</button>
+    <a class="btn btn-outline-warning" href="{% url 'facility-list' %}">Back</a>
+</form>
+{% endblock %}
