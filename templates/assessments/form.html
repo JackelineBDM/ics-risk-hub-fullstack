@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Risk assessment</h1>
+<p>Facility: {{ facility.name }}</p>
+<form method="post">
+    {% csrf_token %}
+    {% for question in questions %}
+    <div class="card p-3 mb-3">
+        <p class="mb-2"><strong>{{ question.order }}.</strong> {{ question.text }}</p>
+        <label class="me-3">
+            <input type="radio" name="question_{{ question.id }}" value="yes" required> Yes
+        </label>
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="no" required> No
+        </label>
+    </div>
+    {% empty %}
+    <p>No questions found. Add them in admin first.</p>
+    {% endfor %}
+    <button class="btn btn-warning" type="submit">Save assessment</button>
+    <a class="btn btn-outline-warning" href="{% url 'facility-list' %}">Cancel</a>
+</form>
+{% endblock %}

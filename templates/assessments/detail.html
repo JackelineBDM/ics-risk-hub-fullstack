@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Assessment result</h1>
+<div class="card p-4 mb-4">
+    <p>Facility: {{ assessment.facility.name }}</p>
+    <p>Score: {{ assessment.score }} / {{ assessment.max_score }} ({{ assessment.percentage }}%)</p>
+    <p>Risk level: {{ assessment.get_risk_level_display }}</p>
+    <p>{{ assessment.recommendation }}</p>
+</div>
+<h2 class="h4">Answers</h2>
+{% for item in assessment.answers.all %}
+<p>{{ item.question.order }}. {{ item.question.text }} — {{ item.get_answer_display }}</p>
+{% endfor %}
+<a class="btn btn-warning" href="{% url 'facility-list' %}">Back to facilities</a>
+{% endblock %}
