@@ -8,12 +8,10 @@ Result 25 Sep 2026: 4 tests OK.
 
 ## Manual
 
-| Test | Result | Date |
-|---|---|---|
-| Register on live site | Pass | 25 Sep 2026 |
-| Log in | Pass | 25 Sep 2026 |
-| Add facility North Plant | Pass | 25 Sep 2026 |
-| Save assessment | Pass | 25 Sep 2026 |
-| Threat matrix shows 6 threats | Pass | 25 Sep 2026 |
-| Checklist saves ticks | Pass | 25 Sep 2026 |
-| Logout | Pass | 25 Sep 2026 |
+| Test | Result | Date | Evidence |
+|---|---|---|---|
+| Live homepage | Pass | 25 Sep 2026 | docs/live-home.png |
+| Add facility | Pass | 25 Sep 2026 | docs/facility.png |
+| Save assessment | Pass | 25 Sep 2026 | docs/assessment.png |
+| Threat matrix | Pass | 25 Sep 2026 | docs/threats.png |
+| Checklist ticks persist | Pass | 25 Sep 2026 | docs/checklist.png |
