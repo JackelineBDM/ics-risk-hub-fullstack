@@ -116,3 +116,40 @@ Checklist checkboxes have visible labels.
 SECRET_KEY is still in settings for development.
 DEBUG is still True in this environment.
 The live URL is not deployed yet.
+
+
+## User stories
+
+As a plant manager I can register and log in so my assessments stay private.
+As a plant manager I can add and edit facilities so each site has its own record.
+As a plant manager I can complete an SL2 questionnaire and see a saved score.
+As an OT engineer I can filter threats by impact so I can prioritise Critical items.
+As a plant manager I can tick SL2 controls for a facility and find them still ticked later.
+As a staff user I can add questions, threats and controls in admin.
+
+## UX decisions
+
+Dark navy and yellow match the industrial Project 2 hub so users recognise the product.
+Delete uses a confirm page so a facility is not removed by one mis-click.
+Save messages tell the user that the database write worked.
+Login-only pages stop casual visitors changing another site's data.
+Forms use Bootstrap so the layout works on a phone and a desktop.
+
+## Accessibility
+
+Pages use heading order, labels on form controls, and button text that describes the action.
+Colour is not the only way to show state: risk level is written as Low, Medium or High.
+Checklist checkboxes have visible labels.
+
+## Future features
+
+- PostgreSQL in production
+- PDF export of an assessment
+- Manager versus engineer roles
+- Dashboard of all facility scores
+
+## Known limitations
+
+SECRET_KEY is still in settings for development.
+DEBUG is still True in this environment.
+The live URL is not deployed yet.
