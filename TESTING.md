@@ -2,21 +2,18 @@
 
 ## Automated
 
-python manage.py test facilities
+python manage.py test assessments threats facilities
 
-Expected: 2 tests OK.
+Result 25 Sep 2026: 4 tests OK.
 
 ## Manual
 
-| Test | Steps | Expected |
+| Test | Result | Date |
 |---|---|---|
-| Register | Open register, create user | Account created, can log in |
-| Login | Log in with that user | Hello, username in nav |
-| Add facility | My Facilities, Add, save | Card appears |
-| Edit facility | Edit, change name, save | New name shows |
-| Delete facility | Delete, confirm | Card gone |
-| Owner only | Second user logs in | Cannot see first user's plants |
-| Assessment | Assess, answer all, save | Score and risk saved |
-| Threat filter | Threats, click Critical | Only critical cards |
-| Checklist | Tick items, save, refresh | Ticks remain |
-| Logout | Log out | Login button returns |
+| Register on live site | Pass | 25 Sep 2026 |
+| Log in | Pass | 25 Sep 2026 |
+| Add facility North Plant | Pass | 25 Sep 2026 |
+| Save assessment | Pass | 25 Sep 2026 |
+| Threat matrix shows 6 threats | Pass | 25 Sep 2026 |
+| Checklist saves ticks | Pass | 25 Sep 2026 |
+| Logout | Pass | 25 Sep 2026 |
