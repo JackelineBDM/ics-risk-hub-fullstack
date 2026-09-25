@@ -24,11 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-change-me")
-if not DEBUG and SECRET_KEY == "dev-only-change-me":
-    raise ValueError("Set SECRET_KEY in the environment for production")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "True") == "True"
+if not DEBUG and SECRET_KEY == "dev-only-change-me":
+    raise ValueError("Set SECRET_KEY in the environment for production")
 
 ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",") if h.strip()]
 
