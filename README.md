@@ -74,6 +74,8 @@ DEBUG is False in production.
 ## Deployment
 
 Host: Render
+Database: Render PostgreSQL (ics-risk-hub-db)
+
 Build: ./build.sh
 Start: gunicorn config.wsgi:application
 Live URL: https://ics-risk-hub-fullstack.onrender.com
