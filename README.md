@@ -4,7 +4,7 @@ Full-stack Django application for plant managers and OT security staff to assess
 
 This is Milestone Project 3 for the Code Institute Level 5 Diploma in Web Application Development.
 
-**Live site:** TBC  
+**Live site:** https://ics-risk-hub-fullstack.onrender.com  
 **Repository:** https://github.com/JackelineBDM/ics-risk-hub-fullstack
 
 The earlier frontend-only site remains Milestone Project 2:  
