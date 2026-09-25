@@ -4,7 +4,7 @@
     <h1>ICS Risk Assessment Hub</h1>
     <p class="lead">Evaluate SL2 posture using the Purdue Model. Save assessments for your facility.</p>
     {% if user.is_authenticated %}
-        <p>You are logged in. Next we will add your facilities.</p>
+        <p>You are logged in. Open My Facilities to add a site or continue an assessment.</p>
     {% else %}
         <a class="btn btn-warning btn-lg" href="{% url 'register' %}">Create an account</a>
     {% endif %}
