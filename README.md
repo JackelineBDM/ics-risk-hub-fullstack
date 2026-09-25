@@ -85,3 +85,16 @@ Free Render instances sleep after idle time. The first load can take about a min
 ## Credits
 
 Purdue model, NIST SP 800-82, IEC 62443, Django docs, Code Institute.
+
+
+## Entity relationship diagram
+
+~~~mermaid
+erDiagram
+    User ||--o{ Facility : owns
+    Facility ||--o{ Assessment : has
+    Facility ||--o{ FacilityControl : has
+    Assessment ||--o{ AssessmentAnswer : has
+    Question ||--o{ AssessmentAnswer : answers
+    Control ||--o{ FacilityControl : tracks
+~~~
