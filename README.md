@@ -100,7 +100,7 @@ Pages use one main heading, labelled form controls, and button text that names t
 
 ## Credits
 
-Purdue model, NIST SP 800-82, IEC 62443, Django docs, Code Institute.
+Purdue model, NIST SP 800-82, IEC 62443, Django docs, Bootstrap, PostgreSQL, Render, Code Institute.
 
 
 ## Entity relationship diagram
