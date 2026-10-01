@@ -49,6 +49,7 @@ Question, Control and Threat are shared reference tables.
 
 ## How to run
 
+~~~
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -56,12 +57,23 @@ python manage.py migrate
 python manage.py seed_data
 python manage.py createsuperuser
 python manage.py runserver 0.0.0.0:8000
+~~~
 
 ## Testing
 
 See TESTING.md.
-Automated: python manage.py test facilities
-Expected: 2 tests OK.
+
+Automated command:
+
+~~~
+python manage.py test assessments threats facilities
+~~~
+
+Result 25 Sep 2026: 4 tests OK.
+
+Manual checks on the live site all passed: register, add facility, save assessment, threat matrix, checklist. Evidence is in docs/.
+
+Known limits: the free Render app sleeps after idle time. The free PostgreSQL database expires on 25 Oct 2026. A bad address shows the custom 404 page.
 
 ## Security
 
@@ -81,6 +93,10 @@ Start: gunicorn config.wsgi:application
 Live URL: https://ics-risk-hub-fullstack.onrender.com
 
 Free Render instances sleep after idle time. The first load can take about a minute.
+
+## Accessibility
+
+Pages use one main heading, labelled form controls, and button text that names the action. Risk level is written as words, not colour alone. The layout uses Bootstrap so it works on a phone and a desktop.
 
 ## Credits
 
