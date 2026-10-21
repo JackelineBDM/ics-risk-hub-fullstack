@@ -4,25 +4,79 @@ from assessments.models import Question
 from compliance.models import Control
 from threats.models import Threat
 
-
 QUESTIONS = [
-    (1, "Is the Purdue Level 0-1 (Process/Field devices) network segmented from Level 2 (Supervisory) systems?", 9),
-    (2, "Is remote access to ICS/OT systems strictly controlled and monitored?", 9),
-    (3, "Are firewalls and conduits implemented between Purdue zones according to IEC 62443?", 9),
-    (4, "Do you have a patch management program for OT/ICS systems?", 9),
-    (5, "Is there strict access control (least privilege) for engineers and contractors?", 9),
-    (6, "Are USB and removable media policies enforced on OT systems?", 9),
-    (7, "Is network monitoring and anomaly detection in place for Purdue Level 0-2?", 9),
+    (
+        1,
+        "Is the Purdue Level 0-1 (Process/Field devices) network "
+        "segmented from Level 2 (Supervisory) systems?",
+        9,
+    ),
+    (2, (
+        "Is remote access to ICS/OT systems strictly controlled and monitored?"
+    ), 9),
+    (
+        3,
+        "Are firewalls and conduits implemented between Purdue "
+        "zones according to IEC 62443?",
+        9,
+    ),
+    (4, (
+        "Do you have a patch management program for OT/ICS systems?"
+    ), 9),
+    (
+        5,
+        "Is there strict access control (least privilege) for "
+        "engineers and contractors?",
+        9,
+    ),
+    (6, (
+        "Are USB and removable media policies enforced on OT systems?"
+    ), 9),
+    (
+        7,
+        "Is network monitoring and anomaly detection in place for Purdue Level 0-2?",
+        9,
+    ),
     (8, "Have staff received recent training on ICS cybersecurity awareness?", 9),
 ]
 
 THREATS = [
-    ("Ransomware", "Malicious software that encrypts critical OT systems and demands payment.", "0-1, 2", "high"),
-    ("Stuxnet-style Worm", "Targeted malware that damages physical industrial equipment (PLCs).", "0-1", "critical"),
-    ("Insider Threat", "Authorised personnel misusing access to alter control logic.", "2, 3", "medium"),
-    ("Phishing & Social Engineering", "Deceptive emails leading to credential theft or malware delivery.", "3, 4-5", "high"),
-    ("DDoS Attack on SCADA", "Overwhelming supervisory systems causing loss of visibility.", "2", "high"),
-    ("USB Malware Propagation", "Infected removable media bypassing air-gapped systems.", "0-1", "critical"),
+    (
+        "Ransomware",
+        "Malicious software that encrypts critical OT systems and demands payment.",
+        "0-1, 2",
+        "high",
+    ),
+    (
+        "Stuxnet-style Worm",
+        "Targeted malware that damages physical industrial equipment (PLCs).",
+        "0-1",
+        "critical",
+    ),
+    (
+        "Insider Threat",
+        "Authorised personnel misusing access to alter control logic.",
+        "2, 3",
+        "medium",
+    ),
+    (
+        "Phishing & Social Engineering",
+        "Deceptive emails leading to credential theft or malware delivery.",
+        "3, 4-5",
+        "high",
+    ),
+    (
+        "DDoS Attack on SCADA",
+        "Overwhelming supervisory systems causing loss of visibility.",
+        "2",
+        "high",
+    ),
+    (
+        "USB Malware Propagation",
+        "Infected removable media bypassing air-gapped systems.",
+        "0-1",
+        "critical",
+    ),
 ]
 
 CONTROLS = [

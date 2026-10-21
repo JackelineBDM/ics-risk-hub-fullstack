@@ -11,7 +11,10 @@ def risk_from_percentage(percentage):
     if percentage >= 80:
         return "low", "Good SL2 posture. Keep monitoring and reviewing controls."
     if percentage >= 50:
-        return "medium", "Some gaps remain. Prioritise segmentation, access control and monitoring."
+        return (
+            "medium",
+            "Some gaps remain. Prioritise segmentation, access control and monitoring.",
+        )
     return "high", "High risk. Treat network segmentation and remote access as urgent."
 
 

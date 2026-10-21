@@ -8,11 +8,15 @@ from .models import Control, FacilityControl
 class ChecklistTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user("pat", "pat@test.com", "Pass12345!")
-        self.facility = Facility.objects.create(owner=self.user, name="Test Plant", sector="energy")
+        self.facility = Facility.objects.create(
+            owner=self.user, name="Test Plant", sector="energy"
+        )
         self.control = Control.objects.create(title="Segment networks", order=1)
 
     def test_checklist_requires_login(self):
-        response = self.client.get(reverse("compliance-checklist", args=[self.facility.pk]))
+        response = self.client.get(
+            reverse("compliance-checklist", args=[self.facility.pk])
+        )
         self.assertEqual(response.status_code, 302)
 
     def test_tick_is_saved(self):

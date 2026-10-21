@@ -7,22 +7,24 @@ class Control(models.Model):
     order = models.PositiveIntegerField(default=1)
 
     class Meta:
-        ordering = ['order']
+        ordering = ["order"]
 
     def __str__(self):
         return self.title
 
 
 class FacilityControl(models.Model):
-    facility = models.ForeignKey(Facility, on_delete=models.CASCADE, related_name='control_status')
+    facility = models.ForeignKey(
+        Facility, on_delete=models.CASCADE, related_name="control_status"
+    )
     control = models.ForeignKey(Control, on_delete=models.CASCADE)
     is_implemented = models.BooleanField(default=False)
     notes = models.TextField(blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('facility', 'control')
+        unique_together = ("facility", "control")
 
     def __str__(self):
-        status = 'done' if self.is_implemented else 'open'
+        status = "done" if self.is_implemented else "open"
         return f"{self.facility.name} - {self.control.title} ({status})"
