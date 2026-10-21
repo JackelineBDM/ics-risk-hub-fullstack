@@ -25,3 +25,19 @@ class FacilityTests(TestCase):
         self.assertContains(response, "North Plant Alpha")
         self.assertNotContains(response, "South Plant Beta")
         self.assertEqual(list(response.context["facilities"]), [own])
+
+    def test_create_facility(self):
+        self.client.login(username="pat", password="Pass12345!")
+        response = self.client.post(reverse("facility-add"), {
+            "name": "New Test Plant",
+            "sector": "energy",
+            "description": "test",
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Facility.objects.filter(name="New Test Plant", owner=self.user).exists())
+
+    def test_other_user_cannot_edit(self):
+        facility = Facility.objects.create(owner=self.other, name="Other Plant", sector="energy")
+        self.client.login(username="pat", password="Pass12345!")
+        response = self.client.get(reverse("facility-edit", args=[facility.pk]))
+        self.assertEqual(response.status_code, 404)
