@@ -14,9 +14,14 @@ class FacilityTests(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_user_only_sees_own_facility(self):
-        Facility.objects.create(owner=self.user, name="A", sector="energy")
-        Facility.objects.create(owner=self.other, name="B", sector="energy")
+        own = Facility.objects.create(
+            owner=self.user, name="North Plant Alpha", sector="energy"
+        )
+        Facility.objects.create(
+            owner=self.other, name="South Plant Beta", sector="energy"
+        )
         self.client.login(username="pat", password="Pass12345!")
         response = self.client.get(reverse("facility-list"))
-        self.assertContains(response, "A")
-        self.assertNotContains(response, "B")
+        self.assertContains(response, "North Plant Alpha")
+        self.assertNotContains(response, "South Plant Beta")
+        self.assertEqual(list(response.context["facilities"]), [own])
