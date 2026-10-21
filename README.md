@@ -110,11 +110,13 @@ Purdue model, NIST SP 800-82, IEC 62443, Django docs, Bootstrap, PostgreSQL, Ren
 ~~~mermaid
 erDiagram
     User ||--o{ Facility : owns
+    User ||--o{ Assessment : created_by
     Facility ||--o{ Assessment : has
     Facility ||--o{ FacilityControl : has
     Assessment ||--o{ AssessmentAnswer : has
     Question ||--o{ AssessmentAnswer : answers
     Control ||--o{ FacilityControl : tracks
+    Threat
 ~~~
 
 
@@ -125,3 +127,87 @@ erDiagram
 - [Assessment result](docs/assessment.png)
 - [Threat matrix](docs/threats.png)
 - [SL2 checklist](docs/checklist.png)
+\n
+## Data model – field tables
+
+### Facility
+| Field | Type | Constraints | On delete |
+| --- | --- | --- | --- |
+| owner | ForeignKey(User) | required | CASCADE |
+| name | CharField | max_length=200 | — |
+| sector | CharField | choices | — |
+| description | TextField | blank=True | — |
+
+### Assessment
+| Field | Type | Constraints | On delete |
+| --- | --- | --- | --- |
+| facility | ForeignKey(Facility) | required | CASCADE |
+| created_by | ForeignKey(User) | required | CASCADE |
+| score | PositiveIntegerField | default=0 | — |
+| max_score | PositiveIntegerField | default=0 | — |
+| percentage | PositiveIntegerField | default=0 | — |
+| risk_level | CharField | choices: low/medium/high | — |
+| recommendation | TextField | blank=True | — |
+| created_at | DateTimeField | auto_now_add | — |
+
+### AssessmentAnswer
+| Field | Type | Constraints | On delete |
+| --- | --- | --- | --- |
+| assessment | ForeignKey(Assessment) | required | CASCADE |
+| question | ForeignKey(Question) | required | CASCADE |
+| answer | CharField | choices: yes/no | — |
+
+### Question
+| Field | Type | Constraints | On delete |
+| --- | --- | --- | --- |
+| text | CharField | max_length=300 | — |
+| points | PositiveIntegerField | default=10 | — |
+| order | PositiveIntegerField | default=1 | — |
+
+### Control
+| Field | Type | Constraints | On delete |
+| --- | --- | --- | --- |
+| title | CharField | max_length=250 | — |
+| order | PositiveIntegerField | default=1 | — |
+
+### FacilityControl
+| Field | Type | Constraints | On delete |
+| --- | --- | --- | --- |
+| facility | ForeignKey(Facility) | required | CASCADE |
+| control | ForeignKey(Control) | required | CASCADE |
+| is_implemented | BooleanField | default=False | — |
+| notes | TextField | blank=True | — |
+| updated_at | DateTimeField | auto_now | — |
+
+### Threat
+| Field | Type | Constraints | On delete |
+| --- | --- | --- | --- |
+| name | CharField | required | — |
+| description | TextField | — | — |
+| impact | CharField | choices | — |
+| purdue_level | CharField | — | — |
+
+User owns Facility. Facility has Assessment and FacilityControl. Assessment has AssessmentAnswer. Question, Control and Threat are shared reference data.
+\n
+## How to run and deploy
+
+### Local
+~~~
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py seed_data
+python manage.py createsuperuser
+python manage.py runserver 0.0.0.0:8000
+~~~
+Python 3.12 or 3.14. Environment variables: SECRET_KEY, DEBUG, DATABASE_URL, ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS.
+
+### Render
+1. Create a Web Service from this GitHub repo.
+2. Build command: ./build.sh
+3. Start command: gunicorn config.wsgi:application
+4. Add a PostgreSQL database and link DATABASE_URL.
+5. Set environment variables: SECRET_KEY, DEBUG=False, ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS.
+6. Deploy. The build script runs migrations, collects static files and loads seed data.
+7. Verify the live URL loads, register works, and a facility can be saved.
