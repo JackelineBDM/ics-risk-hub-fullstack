@@ -76,6 +76,8 @@ Manual checks on the live site all passed: register, add facility, save assessme
 Known limits: the free Render app sleeps after idle time. The free PostgreSQL database expires on 25 Oct 2026. A bad address shows the custom 404 page.
 
 ## Security
+An earlier commit contained a secret key. The key was rotated and the history was cleaned with git-filter-repo.
+
 
 Login required for private pages.
 Querysets filtered by owner.
