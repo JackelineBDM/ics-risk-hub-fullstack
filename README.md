@@ -211,3 +211,6 @@ Python 3.12 or 3.14. Environment variables: SECRET_KEY, DEBUG, DATABASE_URL, ALL
 5. Set environment variables: SECRET_KEY, DEBUG=False, ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS.
 6. Deploy. The build script runs migrations, collects static files and loads seed data.
 7. Verify the live URL loads, register works, and a facility can be saved.
+
+## Code style
+flake8 reports mostly E501 (line length > 79). These are left as-is for readability of model fields, URLs and test data. Unused imports and missing newlines were cleaned. Assessment radio buttons use fieldset and legend for grouping.
