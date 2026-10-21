@@ -5,15 +5,15 @@
 <form method="post">
     {% csrf_token %}
     {% for question in questions %}
-    <div class="card p-3 mb-3">
-        <p class="mb-2"><strong>{{ question.order }}.</strong> {{ question.text }}</p>
+    <fieldset class="card p-3 mb-3">
+        <legend class="mb-2"><strong>{{ question.order }}.</strong> {{ question.text }}</legend>
         <label class="me-3">
             <input type="radio" name="question_{{ question.id }}" value="yes" required> Yes
         </label>
         <label>
             <input type="radio" name="question_{{ question.id }}" value="no" required> No
         </label>
-    </div>
+    </fieldset>
     {% empty %}
     <p>No questions found. Add them in admin first.</p>
     {% endfor %}
