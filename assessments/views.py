@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 
 from facilities.models import Facility
@@ -51,21 +52,22 @@ def assessment_form(request, facility_id):
         percentage = round((score / max_score) * 100) if max_score else 0
         risk_level, recommendation = risk_from_percentage(percentage)
 
-        assessment = Assessment.objects.create(
-            facility=facility,
-            created_by=request.user,
-            score=score,
-            max_score=max_score,
-            percentage=percentage,
-            risk_level=risk_level,
-            recommendation=recommendation,
-        )
-        for question, value in answers:
-            AssessmentAnswer.objects.create(
-                assessment=assessment,
-                question=question,
-                answer=value,
+        with transaction.atomic():
+            assessment = Assessment.objects.create(
+                facility=facility,
+                created_by=request.user,
+                score=score,
+                max_score=max_score,
+                percentage=percentage,
+                risk_level=risk_level,
+                recommendation=recommendation,
             )
+            for question, value in answers:
+                AssessmentAnswer.objects.create(
+                    assessment=assessment,
+                    question=question,
+                    answer=value,
+                )
         messages.success(request, "Assessment saved.")
         return redirect("assessment-detail", pk=assessment.pk)
 

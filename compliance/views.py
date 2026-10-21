@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 
 from facilities.models import Facility
@@ -13,13 +14,14 @@ def checklist(request, facility_id):
 
     if request.method == "POST":
         checked_ids = set(request.POST.getlist("control"))
-        for control in controls:
-            obj, _created = FacilityControl.objects.get_or_create(
-                facility=facility,
-                control=control,
-            )
-            obj.is_implemented = str(control.id) in checked_ids
-            obj.save()
+        with transaction.atomic():
+            for control in controls:
+                obj, _created = FacilityControl.objects.get_or_create(
+                    facility=facility,
+                    control=control,
+                )
+                obj.is_implemented = str(control.id) in checked_ids
+                obj.save()
         messages.success(request, "Checklist saved.")
         return redirect("compliance-checklist", facility_id=facility.id)
 
