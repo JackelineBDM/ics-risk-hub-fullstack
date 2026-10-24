@@ -69,7 +69,7 @@ Automated command:
 python manage.py test assessments threats facilities
 ~~~
 
-Result 25 Sep 2026: 4 tests OK.
+Result 25 Sep 2026: 9 tests OK.
 
 Manual checks on the live site all passed: register, add facility, save assessment, threat matrix, checklist. Evidence is in docs/.
 
@@ -213,4 +213,4 @@ Python 3.12 or 3.14. Environment variables: SECRET_KEY, DEBUG, DATABASE_URL, ALL
 7. Verify the live URL loads, register works, and a facility can be saved.
 
 ## Code style
-flake8 reports mostly E501 (line length > 79). These are left as-is for readability of model fields, URLs and test data. Unused imports and missing newlines were cleaned. Assessment radio buttons use fieldset and legend for grouping.
+flake8 (0 issues) reports mostly E501 (line length > 79). These are left as-is for readability of model fields, URLs and test data. Unused imports and missing newlines were cleaned. Assessment radio buttons use fieldset and legend for grouping.

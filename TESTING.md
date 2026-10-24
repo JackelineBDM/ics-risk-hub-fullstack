@@ -52,3 +52,7 @@ The risk score is a project-defined indicator based on the weighted yes/no quest
 ## Live authenticated check
 
 On the deployed site a test user registered, created a facility, saved an assessment and saved checklist ticks. All records remained after logout and login.
+
+## HTML validation
+
+W3C Nu HTML Checker on the live registration page (https://ics-risk-hub-fullstack.onrender.com/accounts/register/) completed with no errors or warnings on 24 October 2026. Password help text is rendered in a block container outside paragraphs. The page uses an h1 heading.
